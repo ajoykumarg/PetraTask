@@ -1,0 +1,63 @@
+﻿@model PetraProductsTask.Models.Article
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+</head>
+<body>
+    <div>
+        <h4>Article</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ArticleNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ArticleName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleCategory)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ArticleCategory)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticlePrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ArticlePrice)
+            </dd>
+    
+        </dl>
+    </div>
+
+</body>
+</html>

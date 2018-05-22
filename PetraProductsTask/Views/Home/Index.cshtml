@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Petra Task</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/Content/themes/base/jquery-ui.min.css" />
+
+</head>
+<body>
+    <div style="width:90%; margin:0 auto" class="tableContainer">
+         <table id="tblArticles">
+             <thead>
+                 <tr>
+                     <th>Artikel nr</th>
+                     <th>Artikel namn</th>
+                     <th>Beskrivning</th>
+                     <th>Kategori</th>
+                     <th>Pris i kr inkl.moms</th>
+                     <th>Redigera</th>                     
+                 </tr>
+             </thead>
+         </table>
+    </div>
+        <div class="popupWindow" style="overflow:auto"></div>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>    
+    <script>
+    $(document).ready(function () {
+        var oTable = $('#tblArticles').DataTable({
+            "ajax": {
+                url: "/home/GetArticles",
+                type: "get",
+                datatype: "json"
+            },
+            columns: [
+                { "data": "ArticleNumber", "autowidth": true },
+                { "data": "ArticleName", "autowidth": true, "render": function (data) { return '<a href="/home/Details/'+data+'">'+data+'</a>'; } },
+                { "data": "Description", "autowidth": true },
+                { "data": "ArticleCategory", "autowidth": true },
+                { "data": "ArticlePrice", "autowidth": true },
+                {
+                    "data": "ArticleID", "autowidth": true, "render": function (data) {
+                        return '<a class="popup" href="/home/GetArticleForEdit/' + data + '">Redigera</a>';
+                    }
+                }
+            ]
+        });
+
+        $('.tableContainer').on('click', 'a.popup', function (e) {
+            e.preventDefault();
+            OpenPopup($(this).attr('href'));
+        });
+
+        function OpenPopup(pageUrl) {
+            var $pageContent = $('<div />');
+            $pageContent.load(pageUrl);
+
+            $dialog = $('.popupWindow')
+                      .html($pageContent).dialog({
+                          draggable: false,
+                          resizable: false,
+                          height: 600,
+                          width: 600,
+                          modal: true,
+                          title: 'Popup Dialog'
+                          //close: function () {
+                          //    $dialog.dialog('destroy').remove();
+                          //}
+                      })
+
+            $('.popupWindow').on('submit', '#popupForm', function (e) {
+
+                var url = $('#popupForm')[0].action;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $('#popupForm').serialize(),
+                    success: function (data) {
+                        if (data.status) {
+                            $dialog.dialog('close');
+                            oTable.ajax.reload();
+                        }
+
+                    }
+
+                });
+                e.preventDefault();
+            });
+
+            $dialog.dialog('open');
+        }
+
+    });
+    </script>
+</body>
+</html>

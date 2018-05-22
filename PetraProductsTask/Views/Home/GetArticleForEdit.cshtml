@@ -1,0 +1,93 @@
+﻿@model PetraProductsTask.Models.Article
+<h2>Update Article</h2>
+@using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post, new { id = "popupForm" }))
+{
+    if(Model!=null && Model.ArticleID > 0)
+    {
+        @Html.HiddenFor(a => a.ArticleID);
+    }
+    @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        <label>Artikel nr</label>
+        @Html.TextBoxFor(a => a.ArticleNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ArticleNumber)
+    </div>
+    <div class="form-group">
+        <label>Artikel namn</label>
+        @Html.TextBoxFor(a => a.ArticleName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ArticleName)
+    </div>
+    <div class="form-group">
+        <label>Beskrivning</label>
+        @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Description)
+    </div>
+    <div class="form-group">
+        <label>Kategori</label>
+        @Html.TextBoxFor(a => a.ArticleCategory, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ArticleCategory)
+    </div>
+    <div class="form-group">
+        <label>Pris i kr inkl.moms</label>
+        @Html.TextBoxFor(a => a.ArticlePrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ArticlePrice)
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="UpdateArticle" class="btn btn-default" />
+    </div>
+    @*<div class="form-horizontal">
+        <h4>Article</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ArticleID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticleNumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArticleNumber)
+                @Html.ValidationMessageFor(model => model.ArticleNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticleName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArticleName)
+                @Html.ValidationMessageFor(model => model.ArticleName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticleCategory, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArticleCategory)
+                @Html.ValidationMessageFor(model => model.ArticleCategory)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArticlePrice, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArticlePrice)
+                @Html.ValidationMessageFor(model => model.ArticlePrice)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+}
+

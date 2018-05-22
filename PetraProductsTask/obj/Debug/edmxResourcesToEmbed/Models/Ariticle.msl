@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PetraTaskDBModelStoreContainer" CdmEntityContainer="PetraTaskDBEntities">
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="PetraTaskDBModel.Article">
+        <MappingFragment StoreEntitySet="Articles">
+          <ScalarProperty Name="ArticlePrice" ColumnName="ArticlePrice" />
+          <ScalarProperty Name="ArticleCategory" ColumnName="ArticleCategory" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="ArticleNumber" ColumnName="ArticleNumber" />
+          <ScalarProperty Name="ArticleName" ColumnName="ArticleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
